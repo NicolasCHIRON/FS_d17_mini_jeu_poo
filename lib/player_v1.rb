@@ -17,6 +17,7 @@ class Player
     end
   end
 
+  # Pour attaquer les autres joueurs en se servant du lancer de dé (compute damage) et de la perte de points de vie (gets_damage)
   def attacks(player2)
     puts "#{@name} tente de briser le genou de #{player2.name} !"
     attacks_power = compute_damage

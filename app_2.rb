@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.require
 
 require_relative 'lib/game'
-require_relative 'lib/player'
+require_relative 'lib/player_v2'
 
 system("clear")
 # Affichage et création de notre personnage !
@@ -80,7 +80,11 @@ while human1.life_points > 0 && (player1.life_points > 0 || player2.life_points 
       x = true
 
     else
+      puts "===================================================="
+      puts "===================================================="
       puts "Ce n'est pas un choix valide, merci de recommencer :"
+      puts "===================================================="
+      puts "===================================================="
       x = false
     end
 
@@ -98,10 +102,15 @@ end
 
 # Quand la boucle est finie, le combat est terminé !
 
+puts
+puts "-----------------------------------"
+puts
 puts "La partie est finie !"
 if human1.life_points > 0
+  puts
   puts "Tu les as défoncé !"
 else
+  puts
   puts "C'est ça qu'on appelle un champion... pfff... t'es qu'une merde et tu ne méritait pas de vivre..."
 end
 # binding.pry
