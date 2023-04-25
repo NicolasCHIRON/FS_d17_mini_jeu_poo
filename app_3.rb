@@ -23,9 +23,9 @@ human_player_name = gets.chomp.to_s
 my_game = Game.new(human_player_name)
 # binding.pry
 while my_game.is_still_ongoing? == true
-my_game.show_players
-my_game.menu
-my_game.menu_choice
-my_game.enemies_attack
+  my_game.show_players
+  my_game.menu
+  my_game.menu_choice
+  my_game.enemies_attack
 end
 my_game.end

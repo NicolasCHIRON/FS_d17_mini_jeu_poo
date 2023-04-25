@@ -1,7 +1,6 @@
 require 'bundler'
 Bundler.require
 
-require_relative 'lib/game'
 require_relative 'lib/player_v2'
 
 system("clear")
@@ -48,11 +47,15 @@ while human1.life_points > 0 && (player1.life_points > 0 || player2.life_points 
     puts "s - chercher à se soigner ?"
     puts
     puts "attaquer un joueur en vue :"
+    if player1.life_points > 0
     print "0 - "
     player1.show_state
+    end
+    if player2.life_points > 0
     print "1 - "
     player2.show_state
     puts "-----------------------------------"
+    end
 
   # Conditions permettant de choisir l'action en fonction de la touche appuyée par le joueur
     puts
@@ -69,12 +72,12 @@ while human1.life_points > 0 && (player1.life_points > 0 || player2.life_points 
       human1.search_health_pack
       x = true
 
-    elsif human_choice == "0"
+    elsif human_choice == "0" && player1.life_points > 0
       system("clear")
       human1.attacks(player1)
       x = true
 
-    elsif human_choice == "1"
+    elsif human_choice == "1" && player2.life_points > 0
       system("clear")
       human1.attacks(player2)
       x = true

@@ -18,11 +18,10 @@ class Player
   end
 
   # Pour attaquer les autres joueurs en se servant du lancer de dé (compute damage) et de la perte de points de vie (gets_damage)
-  def attacks(player2)
-    puts "#{@name} tente de briser le genou de #{player2.name} !"
+  def attacks(player)
     attacks_power = compute_damage
-    puts "Il lui inflige #{attacks_power} dégâts, la foule est en délire !"
-    player2.gets_damage(attacks_power)
+    puts "#{@name} tente de briser le genou de #{player.name} et lui inflige #{attacks_power} dégats!"
+    player.gets_damage(attacks_power)
   end
 
   def compute_damage
@@ -45,6 +44,8 @@ class HumanPlayer < Player
   end
 
   def show_state
+    puts
+    puts "-----------------------------------"
     puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{weapon_level}."
   end
 
@@ -72,21 +73,27 @@ class HumanPlayer < Player
 
     if search == 1
       puts "Déception, après des heures de recherche... Rien... Ta mort se rapproche..."
+      puts "-----------------------------------"
+      puts
 
-    elsif search == (2..5)
+    elsif search == 2 || search == 3 || search == 4 || search == 5
       if @life_points < 50
         @life_points += 50
       else
         @life_points = 100
       puts "Bravo, tu as trouvé un pack de +50 points de vie."
+      puts "-----------------------------------"
+      puts
       end
 
     else
-      if @life_points < 50
-        @life_points += 50
+      if @life_points < 20
+        @life_points += 80
       else
         @life_points = 100
       puts "Wahou, tu as trouvé un pack de +80 points de vie."
+      puts "-----------------------------------"
+      puts
       end
     end
 

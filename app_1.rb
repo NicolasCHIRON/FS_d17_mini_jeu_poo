@@ -1,7 +1,6 @@
 require 'bundler'
 Bundler.require
 
-require_relative 'lib/game'
 require_relative 'lib/player_v1'
 
 player1 = Player.new("Josiane")

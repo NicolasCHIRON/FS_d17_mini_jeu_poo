@@ -35,67 +35,40 @@ class Game
     puts
     puts "attaquer un joueur en vue :"
     @enemies.each.with_index do |enemy, position|
-      print "#{position} - "
+      print "#{position + 1} - "
       enemy.show_state
     end
   end
 
   def menu_choice
-    x = false
-    while x = false
-    puts
-    print "> "  
-    human_choice = gets.chomp
+    print "> "
+    while input = gets.chomp.to_s.downcase
+      break if (input == "a" || input == "s" || input == "1" || input == "2" || input == "3" || input == "4")
+      puts "Ce choix n'est pas possible veuillez réessayer."
+    end
 
-    if human_choice == "a"
+    case input
+
+    when "a"
       system("clear")
       @human_player.search_weapon
-      x = true
-
-    elsif human_choice == "s"
+      
+    when "s"
       system("clear")
       @human_player.search_health_pack
-      x = true
 
-    elsif human_choice == "0"
+    when "1", "2", "3", "4"
       system("clear")
-      @human_player.attacks(player1)
-      if player1.life_points < 0
-        kill_player(player1)
-      x = true
+      input = input.to_i
+      while input > @enemies.length
+        puts "Cet ennemi est déjà mort... Laissez son cadavre tranquille et choisissez un nombre inférieur ou égal à #{@enemies.length}..."
+        input = gets.chomp.to_i
       end
-
-    elsif human_choice == "1"
-      system("clear")
-      human1.attacks(player2)
-      if player2.life_points < 0
-        kill_player(player2)
-      x = true
+      @human_player.attacks(@enemies[input - 1])
+      puts "-----------------"
+      if @enemies[input - 1].life_points <= 0
+        kill_player(@enemies[input - 1])
       end
-
-    elsif human_choice == "2"
-      system("clear")
-      human1.attacks(player3)
-      if player3.life_points < 0
-        kill_player(player3)
-      x = true
-      end
-
-    elsif human_choice == "3"
-      system("clear")
-      human1.attacks(player4)
-      if player4.life_points < 0
-        kill_player(player4)
-      x = true
-      end
-
-    else
-      puts "===================================================="
-      puts "===================================================="
-      puts "Ce n'est pas un choix valide, merci de recommencer :"
-      puts "===================================================="
-      puts "===================================================="
-      x = false
     end
   end
 
